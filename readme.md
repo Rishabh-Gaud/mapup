@@ -44,7 +44,14 @@ The Intersections API is a mapping-based API that allows you to find intersectio
 
 ## Testing the API with Postman or cURL
 
-You can test the Intersections API using Postman or cURL. Here's how you can make a POST request to the API:
+You can test the Intersections API using Postman or cURL.
+```
+curl --location --request POST 'http://localhost:3000/intersections' \
+--header 'security: mapup' \
+--form 'lines=@"/C:/Users/Saraswati Computers/OneDrive/Desktop/assignment_mapup/lines.json"' \
+--form 'linestring=@"/C:/Users/Saraswati Computers/OneDrive/Desktop/assignment_mapup/long-ls.json"'
+```
+Here's how you can make a POST request to the API:
 
 ### Using Postman
 
