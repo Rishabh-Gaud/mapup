@@ -1,3 +1,4 @@
+
 ---
 # Intersections API
 
@@ -41,17 +42,31 @@ The Intersections API is a mapping-based API that allows you to find intersectio
 
 5. The API will start running on `http://localhost:3000`. You can now send POST requests to `http://localhost:3000/intersections` with the required headers and request body.
 
-## API Usage
+## Testing the API with Postman or cURL
 
-To use the Intersections API, send a POST request to the `/intersections` endpoint with the following:
+You can test the Intersections API using Postman or cURL. Here's how you can make a POST request to the API:
 
-- Headers:
-  - `security: mapup` for authentication.
+### Using Postman
 
-- Request body:
-  - `linestring`: A GeoJSON representation of the long linestring with 5,000 points.
-  - `lines`: An array of 50 lines represented by their start and end points in GeoJSON format.
+1. Open Postman and create a new request.
 
-The API will perform the intersection calculations and return the appropriate response based on the intersections found or any errors encountered.
+2. Set the request method to `POST` and enter the API endpoint URL: `http://localhost:3000/intersections`.
+
+3. Add the required authentication header:
+   - Key: `security`
+   - Value: `mapup`
+
+4. In the request body, select the `form-data` option and set keys file type.
+
+
+5. Provide the GeoJSON representation of the linestring and lines in the request DataForm file. For example:
+```
+lines.json file
+long-ls.json file
+
+```
+
+6. Click the "Send" button to send the request. The response will contain the intersections or error messages based on the request.
+
 
 ---
