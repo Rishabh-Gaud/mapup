@@ -10,8 +10,14 @@ const port = 3000; // Choose an appropriate port number
 // Step 5: Define authentication middleware
 
 const authMiddleware = (req, res, next) => {
-    next(); // Proceed to the next middleware or route handlergit
-};
+    const securityHeader = req.headers['security'];
+  
+    if (securityHeader === 'mapup') {
+      next();
+    } else {
+      res.status(403).json({ error: 'Access Forbidden' });
+    }
+  };
 
 // Step 6: Create the API endpoint
 
@@ -21,10 +27,10 @@ app.get('/intersections', authMiddleware, (req, res) => {
     return res.status(200).json({message: "yes everything is ready"});
 })
 app.post('/intersections', authMiddleware, (req, res) => {
-  const linestring = req.body.linestring; // Assuming the GeoJSON linestring is passed in the request body
-  const lines = req.body.lines; // Assuming the array of 50 lines is passed in the request body
- console.log("line >>>>>>>>>>>", lines);
- console.log("linestrig >>>>>>>", linestring);
+    const linestringFile = req.files.find(file => file.fieldname === 'linestring');
+    const linesFile = req.files.find(file => file.fieldname === 'lines');
+    const linestring = JSON.parse(linestringFile.buffer.toString());
+    const lines = JSON.parse(linesFile.buffer.toString());
 
   // Validate the request body
   if (!linestring || !lines) {
@@ -38,7 +44,6 @@ app.post('/intersections', authMiddleware, (req, res) => {
     const intersectingLines = lines.filter((line) => {
       const parsedLine = turf.lineString(line.line.coordinates);
       const intersection = turf.lineIntersect(parsedLine, parsedLinestring);
-        console.log("intersection >>>>>>>>>>>>>>>>> main data", intersection);
       return intersection.features.length > 0;
     });
 
