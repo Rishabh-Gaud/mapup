@@ -57,7 +57,8 @@ You can test the Intersections API using Postman or cURL. Here's how you can mak
    - Value: `mapup`
 
 4. In the request body, select the `form-data` option and set keys file type.
-
+![image](https://github.com/Rishabh-Gaud/mapup/assets/65586827/65596724-21ca-4b49-88c4-31bcd5d087e8)
+![image](https://github.com/Rishabh-Gaud/mapup/assets/65586827/a4af99bd-db47-4030-84c6-1e32411e5e8e)
 
 5. Provide the GeoJSON representation of the linestring and lines in the request DataForm file. For example:
 ```
