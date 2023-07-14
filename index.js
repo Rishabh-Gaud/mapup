@@ -34,6 +34,7 @@ app.post('/intersections', authMiddleware, (req, res) => {
 
   // Validate the request body
   if (!linestring || !lines) {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
     return res.status(400).json({ error: 'Invalid request body' });
   }
 
@@ -49,7 +50,7 @@ app.post('/intersections', authMiddleware, (req, res) => {
 
     res.json(intersectingLines);
   } catch (error) {
-    console.log("error");
+    console.error(`[${new Date().toISOString()}] Error: ${error}`);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
